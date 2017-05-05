@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-16.04-i386"
+  config.vm.hostname = "webserver"
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+  config.vm.boot_timeout = 600
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = "webserver"
+    v.memory = 2048
+    v.gui = true
+  end
+  config.vm.provision "file", source: "welcome.html", destination: "~/index.html"
+  config.vm.provision "shell", path: "config.sh"
+  end
