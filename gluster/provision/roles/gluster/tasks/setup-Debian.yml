@@ -20,7 +20,7 @@
 - name: Iniciando servicio Gluster
   service:
    name: glusterfs-server
-   state: restarted
+   state: started
    enabled: yes
 
 #Abro en el firewall los puertos necesarios para la comunicación de los peers
