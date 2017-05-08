@@ -1,0 +1,12 @@
+---
+- name: Instalando MySQL
+  apt: "name={{ item }} state=latest"
+  with_items: "{{ mysql_packages }}"
+
+- name: Configurando MySQL
+  mysql_user:
+    name: "{{ mysql_root_name }}"
+    host: 'localhost'
+    password: "{{ mysql_root_password }}"
+    priv: '*.*:ALL,GRANT'
+    state: present
