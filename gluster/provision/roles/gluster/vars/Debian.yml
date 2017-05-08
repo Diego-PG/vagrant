@@ -1,0 +1,8 @@
+---
+#Paquetes de la instalación de Gluster
+gluster_pre:
+  - python-software-properties
+
+gluster_pkgs:
+  - glusterfs-server
+  - glusterfs-client

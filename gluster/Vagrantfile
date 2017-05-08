@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-16.04-i386"
+  config.vm.hostname = "gluster"
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = "gluster"
+  end
+
+  config.vm.provision "ansible" do |a|
+    a.playbook = "provision/gluster-setup.yaml"
+  end
+
+end

@@ -1,0 +1,44 @@
+---
+- name: Instalando repositorio epel
+  yum:
+    name: epel-release
+    state: latest
+
+- name: Actualizando el sistema
+  yum: name=* state=latest
+  when: update
+
+- name: Instalando prerequisitos
+  yum:
+    name: centos-release-gluster
+    state: latest
+
+- name: Instalando paquetes Gluster
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{gluster_pkgs}}"
+
+- name: Iniciando servicio Gluster
+  service:
+   name: glusterd
+   state: restarted
+   enabled: yes
+
+#Abro en el firewall los puertos necesarios para la comunicación de los peers
+- name: Abriendo puertos
+  firewalld:
+    port: "{{ item }}"
+    permanent: true
+    state: enabled
+    zone: public
+  with_items:
+    - 111/tcp
+    - 24007-24020/tcp
+    - 49150-49160/tcp
+
+- name: Reiniciando firewall
+  service:
+    name: firewalld
+    state: restarted
+

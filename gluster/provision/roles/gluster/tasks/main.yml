@@ -1,0 +1,48 @@
+---
+
+#Cambio el hostname de las máquinas al inicado en el fichero de hosts con la
+#variable hname
+- name: Cambiando hostname
+  hostname:
+    name: "{{ hname }}"
+
+#Edito el fichero hosts de las máquinas para incluir en todas los hostnames de
+#las demás
+- name: Populando hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+
+#Incluyo las variables especificas del sistema operativo
+- name: Incluyendo las variables del OS
+  include_vars: "{{ ansible_os_family }}.yml"
+
+#Incluyo el playbook que instala Gluster dependiendo del OS
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+#Creo el directorio del brick
+- name: Creando directorios de brick
+  file:
+    path: "{{ gluster_brick }}"
+    state: directory
+    mode: 0775
+
+#Configuro el primer volumen, que hará una replicación de los datos por todas
+#las máquinas incluidas en el fichero hosts grupo gluster. Los host se
+#emparejan automaticamente con gluster_volume
+- name: Configurando volumenes
+  gluster_volume:
+    name: "{{ gluster_volume }}"
+    bricks: "{{ gluster_brick }}"
+    state: present
+    replicas: "{{ hosts_num }}"
+    cluster: "{{ groups.gluster | join(',') }}"
+    force: yes
+  run_once: true
+
