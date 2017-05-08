@@ -1,21 +1,5 @@
 ---
 
-#Cambio el hostname de las máquinas al inicado en el fichero de hosts con la
-#variable hname
-- name: Cambiando hostname
-  hostname:
-    name: "{{ hname }}"
-
-#Edito el fichero hosts de las máquinas para incluir en todas los hostnames de
-#las demás
-- name: Populando hosts
-  template:
-    src: hosts.j2
-    dest: /etc/hosts
-    owner: root
-    group: root
-    mode: 0644
-
 #Incluyo las variables especificas del sistema operativo
 - name: Incluyendo las variables del OS
   include_vars: "{{ ansible_os_family }}.yml"
