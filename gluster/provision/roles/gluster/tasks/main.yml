@@ -25,8 +25,8 @@
     name: "{{ gluster_volume }}"
     bricks: "{{ gluster_brick }}"
     state: present
-    replicas: "{{ hosts_num }}"
-    cluster: "{{ groups.gluster | join(',') }}"
+    replicas: 2
+    cluster: 192.168.1.11,192.168.1.12
     force: yes
   run_once: true
 

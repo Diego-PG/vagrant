@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   (1..N).each do |machine_id|
     config.vm.define "gluster#{machine_id}" do |gluster|
       gluster.vm.hostname = "gluster#{machine_id}"
-      gluster.vm.network "private_network", ip: "192.168.56.#{1+machine_id}"
+      gluster.vm.network "private_network", ip: "192.168.56.#{10+machine_id}"
 
       gluster.vm.provider "virtualbox" do |v|
         v.name = "gluster#{machine_id}"
