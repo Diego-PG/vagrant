@@ -4,7 +4,8 @@ gluster_brick: /glustervolume
 #Nombre del volumen
 gluster_volume: vol1
 #Número de hosts que hemos incluido. Se utiliza para el tipo de replicación.
-hosts_num: "{{ groups['gluster'] | length }}"
+replicas: 2 
+nodos: 192.168.56.11,192.168.56.12
 #Booleano para activar la actualización de los sistemas antes de realizar la
 #actualización
 update: true
