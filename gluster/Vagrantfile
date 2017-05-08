@@ -3,10 +3,21 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "bento/ubuntu-16.04-i386"
-  config.vm.hostname = "gluster"
 
-  config.vm.provider "virtualbox" do |v|
-    v.name = "gluster"
+  config.vm.define "gluster1" do |g1|
+    g1.vm.hostname = "gluster1"
+    g1.vm.network "private_network", ip: "192.168.56.10"
+    g1.vm.provider "virtualbox" do |v|
+      v.name = "gluster1"
+    end
+  end
+
+  config.vm.define "gluster2" do |g1|
+    g1.vm.hostname = "gluster2"
+    g1.vm.network "private_network", ip: "192.168.56.11"
+    g1.vm.provider "virtualbox" do |v|
+      v.name = "gluster2"
+    end
   end
 
   config.vm.provision "ansible" do |a|
