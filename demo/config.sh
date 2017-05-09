@@ -1,3 +1,6 @@
-
-dpkg -i /home/vagrant/files/vim_7.3.429-2ubuntu2_i386.deb
-
+#!/bin/bash
+apt-get update
+apt-get install vim -y
+useradd -m -s /bin/bash diego
+echo diego:secreto | chpasswd
+cp /home/vagrant/files/vimrc /home/diego/.vimrc

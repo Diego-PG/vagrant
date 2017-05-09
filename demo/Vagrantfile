@@ -5,11 +5,16 @@ Vagrant.configure("2") do |config|
   config.vm.box = "hashicorp/precise32"
   config.vm.hostname = "demo"
   config.vm.synced_folder "files/", "/home/vagrant/files", create: true
-
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+  config.vm.network "private_network", ip: "192.168.56.10"
+  
   config.vm.provider "virtualbox" do |v|
     v.name = "ribera"
     v.memory = 1024
+    v.cpus = 1
+    v.gui = true
   end
 
   config.vm.provision "shell", path: "config.sh"
+
 end
