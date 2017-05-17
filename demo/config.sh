@@ -5,3 +5,4 @@ echo diego:secreto | chpasswd
 cp /home/vagrant/files/motd  /etc/motd.tail
 chown -R diego:diego /opt/compartida
 ln -s /opt/compartida/ /home/diego/
+tar -xvf /home/diego/compartida/archivo.tar -C /home/diego
