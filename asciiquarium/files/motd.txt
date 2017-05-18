@@ -1,0 +1,9 @@
+/*       _\|/_
+         (o o)
+ +----oOO-{_}-OOo-----------------------+
+ |Bienvenido al entorno de Asciiquarium |
+ |Ejecuta asciiquarium para empezar.    |
+ |Con p puedes pausar la animación,     |
+ |con r puedes reiniciarla.             |
+ |Para salir del aquario pulsa q.       |
+ +-------------------------------------*/

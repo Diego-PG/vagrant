@@ -12,3 +12,4 @@ tar -zxvf asciiquarium.tar.gz -C /tmp/
 cd asciiquarium_1.1/
 cp asciiquarium /usr/local/bin
 chmod 0755 /usr/local/bin/asciiquarium
+cp /home/vagrant/motd.txt /etc/motd.tail
