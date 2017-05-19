@@ -1,0 +1,36 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    upgrd: false
+  tasks:
+    - name: Actualizando repositorios
+      apt:
+        update_cache: yes
+
+    - name: Actualizando el sistema
+      apt:
+        upgrade: yes
+      when: upgrd
+
+    - name: Instalando Vim
+      apt:
+        name: vim
+        state: latest
+
+    - name: Instalando git
+      apt:
+        name: git
+        state: latest
+
+    - name: Copiando configuración de Vim
+      git:
+        repo: https://github.com/Diego-PG/.vim.git
+        dest: /home/vagrant/.vim
+        clone: yes
+
+    - name: Configuración final
+      file:
+        src: /home/vagrant/.vim/vimrc
+        dest: /home/vagrant/.vimrc
+        state: link
