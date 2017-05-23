@@ -28,6 +28,7 @@
         repo: https://github.com/Diego-PG/.vim.git
         dest: /home/vagrant/.vim
         clone: yes
+        recursive: yes
 
     - name: Configuración final
       file:

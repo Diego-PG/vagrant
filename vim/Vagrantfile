@@ -13,5 +13,5 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "ansible" do |a|
     a.playbook = "provision/vim-setup.yaml"
-	end
+  end
 end

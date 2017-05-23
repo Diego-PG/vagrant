@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "private_network", ip: "192.168.56.10"
 
-#Configuración de las características de la máquina virtual
+#Configuración de VirtualBox
   config.vm.provider "virtualbox" do |v|
     v.name = "apollo"
     v.memory = 1024

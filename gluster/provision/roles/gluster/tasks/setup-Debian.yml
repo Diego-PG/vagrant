@@ -8,7 +8,7 @@
 
 - name: Añadiendo repositorio de Gluster
   apt_repository:
-    repo: 'ppa:gluster/glusterfs-3.8'
+    repo: 'ppa:gluster/glusterfs-3.10'
 
 - name: Instalando paquetes Gluster
   apt:
