@@ -21,8 +21,6 @@ Vagrant.configure("2") do |config|
     #configuración a traves de VBoxManage
     v.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
     v.customize ["modifyvm", :id, "--vram", "10"]
-#    v.customize ["modifyvm", :id, "--monitorcount", "2"]
-#    v.customize ["modifyvm", :id, "--nictype2", "virtio"]
   end
 
 #Llamada al script config.sh que configura la máquina
